@@ -1,5 +1,6 @@
 'use strict';
 
+let RendomNumber = require('../helper/randomNumber')
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
@@ -7,12 +8,11 @@ module.exports = {
       `SELECT id from shops;`
     );
 
-    const courseRows = shops[0];
-
+    let ids = shops[0].map(shop=>shop.id); console.log(ids)
     return await queryInterface.bulkInsert('coffees', [
-      {name: 'Movie 1', type: 'ABC', ShopId: courseRows[0].id,createdAt: new Date(), updatedAt: new Date(),},
-      {name: 'Movie 1', type: 'ABC', ShopId: courseRows[0].id,createdAt: new Date(), updatedAt: new Date(),},
-      {name: 'Movie 1', type: 'ABC', ShopId: courseRows[0].id,createdAt: new Date(), updatedAt: new Date(),},
+      {name: 'Movie 1', type: 'ABC', ShopId: RendomNumber.getRandomItem(ids),createdAt: new Date(), updatedAt: new Date(),},
+      {name: 'Movie 1', type: 'ABC', ShopId: RendomNumber.getRandomItem(ids),createdAt: new Date(), updatedAt: new Date(),},
+      {name: 'Movie 1', type: 'ABC', ShopId: RendomNumber.getRandomItem(ids),createdAt: new Date(), updatedAt: new Date(),},
     ], {});
   },
 
