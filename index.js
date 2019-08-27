@@ -2,13 +2,14 @@ const port = process.env.port || 7000;
 const express = require('express');
 const app = express();
 const ShopRoute = require('./routes/shop')
-//const Shop = require('./models/Shop');
+const CoffeeRoute = require('./routes/coffee')
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 
 
 app.use('/api',ShopRoute);
+app.use('/api',CoffeeRoute);
 
 
 

@@ -2,11 +2,19 @@
 module.exports = (sequelize, DataTypes) => {
   const Coffee = sequelize.define('Coffee', {
     name: DataTypes.STRING,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    //shopId: DataTypes.INTEGER
   }, {});
   Coffee.associate = function(models) {
     //Coffee belongs to shop
-    Coffee.belongsTo(models.Shop)
+    Coffee.belongsTo(models.Shop,{
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    })
   };
+  Coffee.tableName = 'coffees'
   return Coffee;
 };
