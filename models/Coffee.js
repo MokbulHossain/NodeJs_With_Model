@@ -10,9 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     Coffee.belongsTo(models.Shop,{
       onDelete: "CASCADE",
       onUpdate: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
+      foreignKey: "ShopId"
     })
   };
   Coffee.tableName = 'coffees'

@@ -3,9 +3,16 @@ const models = require( '../models/index');
 const router = express.Router();
 
 //select all.......
-router.get('/shop', (req, res)=> {
-    models.Shop.findAll()
-    .then(function (shop) {
+router.get('/shop', async (req, res)=> {
+        //get one or more attributes....
+    //models.Shop.findAll({ include: [models.Coffee],attributes: ['id','createdAt'], where: {id: 62} })
+        //get all like *  attributes....
+    models.Shop.findAll({ 
+       include: [{
+                  model: models.Coffee,
+                  attributes: ['id'],
+                }]
+  }).then(function (shop) {
       res.json(shop);
     }).catch(e=>res.json(e))
   });

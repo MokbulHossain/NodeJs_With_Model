@@ -4,7 +4,7 @@ const router = express.Router();
 
 //select all.......
 router.get('/coffee', (req, res)=> {
-    models.Coffee.findAll()
+    models.Coffee.findAll({ include: [models.Shop] })
     .then(function (coffee) {
       res.json(coffee);
     }).catch(e=>res.json(e))
